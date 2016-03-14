@@ -5,7 +5,7 @@
 import os
 REPO_URL = os.environ.get('REPO_URL', None)
 if not REPO_URL:
-  REPO_URL = 'https://gerrit.googlesource.com/git-repo'
+  REPO_URL = 'https://github.com/dodocat/git-repo.git'
 REPO_REV = 'stable'
 
 # Copyright (C) 2008 Google Inc.
