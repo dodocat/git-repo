@@ -297,10 +297,12 @@ class RemoteSpec(object):
                name,
                url=None,
                review=None,
+               path=None,
                revision=None):
     self.name = name
     self.url = url
     self.review = review
+    self.path = path
     self.revision = revision
 
 class RepoHook(object):
@@ -2258,6 +2260,7 @@ class Project(object):
       remote = self.GetRemote(self.remote.name)
       remote.url = self.remote.url
       remote.review = self.remote.review
+      remote.path = self.remote.path
       remote.projectname = self.name
 
       if self.worktree:

@@ -66,12 +66,14 @@ class _XmlRemote(object):
                fetch=None,
                manifestUrl=None,
                review=None,
+               path=None,
                revision=None):
     self.name = name
     self.fetchUrl = fetch
     self.manifestUrl = manifestUrl
     self.remoteAlias = alias
     self.reviewUrl = review
+    self.reviewPath = path
     self.revision = revision
     self.resolvedFetchUrl = self._resolveFetchUrl()
 
@@ -102,7 +104,7 @@ class _XmlRemote(object):
     remoteName = self.name
     if self.remoteAlias:
       remoteName = self.remoteAlias
-    return RemoteSpec(remoteName, url, self.reviewUrl)
+    return RemoteSpec(remoteName, url, self.reviewUrl, self.reviewPath)
 
 class XmlManifest(object):
   """manages the repo configuration file"""
@@ -639,11 +641,14 @@ class XmlManifest(object):
     review = node.getAttribute('review')
     if review == '':
       review = None
+    path = node.getAttribute('path')
+    if path == '':
+      path = None
     revision = node.getAttribute('revision')
     if revision == '':
       revision = None
     manifestUrl = self.manifestProject.config.GetString('remote.origin.url')
-    return _XmlRemote(name, alias, fetch, manifestUrl, review, revision)
+    return _XmlRemote(name, alias, fetch, manifestUrl, review, path, revision)
 
   def _ParseDefault(self, node):
     """
