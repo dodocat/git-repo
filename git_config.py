@@ -574,6 +574,9 @@ class Remote(object):
     self.url = self._Get('url')
     self.pushUrl = self._Get('pushurl')
     self.review = self._Get('review')
+    self.path = self._Get('path')
+    if self.path is '':
+      self.path = None
     self.projectname = self._Get('projectname')
     self.fetch = list(map(RefSpec.FromString,
                       self._Get('fetch', all_keys=True)))
@@ -626,7 +629,7 @@ class Remote(object):
         self._review_url = REVIEW_CACHE[u]
       elif 'REPO_HOST_PORT_INFO' in os.environ:
         host, port = os.environ['REPO_HOST_PORT_INFO'].split()
-        self._review_url = self._SshReviewUrl(userEmail, host, port)
+        self._review_url = self._SshReviewUrl(userEmail, host, port, self.path)
         REVIEW_CACHE[u] = self._review_url
       elif u.startswith('sso:'):
         self._review_url = u  # Assume it's right
@@ -643,7 +646,7 @@ class Remote(object):
             self._review_url = http_url
           else:
             host, port = info.split()
-            self._review_url = self._SshReviewUrl(userEmail, host, port)
+            self._review_url = self._SshReviewUrl(userEmail, host, port, self.path)
         except urllib.error.HTTPError as e:
           raise UploadError('%s: %s' % (self.review, str(e)))
         except urllib.error.URLError as e:
@@ -654,11 +657,15 @@ class Remote(object):
         REVIEW_CACHE[u] = self._review_url
     return self._review_url + self.projectname
 
-  def _SshReviewUrl(self, userEmail, host, port):
+  def _SshReviewUrl(self, userEmail, host, port, path):
     username = self._config.GetString('review.%s.username' % self.review)
     if username is None:
       username = userEmail.split('@')[0]
-    return 'ssh://%s@%s:%s/' % (username, host, port)
+
+    if path is None:
+      return 'ssh://%s@%s:%s/' % (username, host, port)
+    else:
+      return 'ssh://%s@%s:%s/%s/' % (username, host, port, path)
 
   def ToLocal(self, rev):
     """Convert a remote revision string to something we have locally.
@@ -704,6 +711,7 @@ class Remote(object):
     else:
       self._Set('pushurl', self.pushUrl)
     self._Set('review', self.review)
+    self._Set('path', self.path)
     self._Set('projectname', self.projectname)
     self._Set('fetch', list(map(str, self.fetch)))
 

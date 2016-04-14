@@ -5,7 +5,7 @@
 import os
 REPO_URL = os.environ.get('REPO_URL', None)
 if not REPO_URL:
-  REPO_URL = 'https://gerrit.googlesource.com/git-repo'
+  REPO_URL = 'https://github.com/dodocat/git-repo.git'
 REPO_REV = 'stable'
 
 # Copyright (C) 2008 Google Inc.
@@ -26,11 +26,44 @@ REPO_REV = 'stable'
 VERSION = (1, 23)
 
 # increment this if the MAINTAINER_KEYS block is modified
-KEYRING_VERSION = (1, 2)
 
 # Each individual key entry is created by using:
 # gpg --armor --export keyid
+KEYRING_VERSION = (1, 3)
 MAINTAINER_KEYS = """
+
+     Jing Quanqi <jing@quanqi.org>
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1.4.2.2 (GNU/Linux)
+
+mQENBFOUrwYBCADVCUvzOBqvcPwx9k3EwGVo02TFrKiOEAXCxi1NHLeYYmvj4Oq8
+ochzIVvkbQiVJZbKdY7+o62eOMWbYkTbrHdkwM0wc6iW3UsgRKlSAee/OO0KREVU
+Ixi0XDEWtl9N7v73xMyNtE0tSlKxyOI/OGbyHWNwLpH803fbfr4CYk2JJtAhNYQb
+sL6AU5lpK7tGFLWtLRHDdiPQKPc7xvd+TJVITyiyBm3B70RWrpB6/t73MtxyPUlh
+02S9NQT3OQ3kNnL27HUQluBhFuvC7ll/rJ8qzrBiMEwKv0njgYDm6ykZ564SIgrN
+l3ci5kOBxFI/ZfQyyltMEjmlcBny9gk/hMwnABEBAAG0OEppbmcgUXVhbnFpIChD
+b2RlIGJ5IFF1YW5xaSBpbiBaaHVoYWkpIDxqaW5nQHF1YW5xaS5vcmc+iQE4BBMB
+AgAiBQJTlK8GAhsDBgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAAKCRDyiAsxLS6v
+NDfZB/9kmKoNScejsdf1JfS0HUvsX2WTj49wB7kf40FBmctdLOlnaWZnILCSbglS
+MytHBtvqKOByyY8rU8kIcgSvLaizzw27tFY3o+clzzClm5kCpleegLJYiagQ88jC
+ffrG6BwaemcRZq4SU/An17SCnqY73wR1uw9qxJB5KaxUhNkZQoAGqHs2Hm+YSI5n
+DSHZ5+RSiHUuLuB1C85mMHeK78rexBirQBQmEUvZZ9YycS3AmofRn5fyzbxF+/UW
+hL0M7RLpOA5/xyPTHQPvMteGMC4KOdifb423J0THplnw7GbtDkEcOsPueFGtOY2H
+R2TUhI98zHm6i3uLOGgxxS2Nreq6uQENBFOUrwYBCACYVkvn79s4JwulguLpNo7A
+KcIYxYgLx2/TysVl7M7nkQP53SY33LnddMSHIMrdWj1mp8uYcykB5owbF0KlEmwv
+r2zKNQ0duRMLX4jXFQ5sVux3UkKA4WsO7yzehgw3guCuYoHo6hXId40OaDBiO4QR
+quMT7ZHkkSzMp42Wb4W29viJR9uzjtahql/T0aL3BmVOubsnlporzv+csnwPWXsP
+nsKl5b7qAZtgE3V3SjWucmtp29qz+YB3P3uZTX9E8bYu0h+CEIkJai7m1VgZuJNl
+9Wn6+ylO842xy3+XNbp1Odtj7rzFMTqfNNP15t8HQZiFst54hjkK2H+ricpgUHQj
+ABEBAAGJAR8EGAECAAkFAlOUrwYCGwwACgkQ8ogLMS0urzQRTQf/XYQirG6I/cI3
+7fITec1X6m60L9Obpae8qCqvc2pkUHwoA6P4EO8YQCoT6OBJrvbmVxXvxBKNHrZx
+Wh1j7rxkEb7SK20ggY5bpJ0aSngfRpUPy+MC/wrlwr0/SFvoao382K1+p40zXxmS
+paf8tFwl+q5ag2GwHqqXGIxonJmTKunBCVpTywVD0vrQqTNeZgPT8gqK5K0Sslgc
+tLXqMXCAYKSlKLQDbDxa1hi9iuoThr0OCety3EzFdgD7FEWjoH/+1hlsHdyvVA5Q
+tCnYKd6wE9l/wXxNHqMA7ouYJ7yjwk9PRZmLqW3Qc8f+K45n7PkqnojpM4W7XFPP
+6TdopR5Y0w==
+=E2Dt
+-----END PGP PUBLIC KEY BLOCK-----
 
      Repo Maintainer <repo@android.kernel.org>
 -----BEGIN PGP PUBLIC KEY BLOCK-----

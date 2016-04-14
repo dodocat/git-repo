@@ -322,12 +322,14 @@ class RemoteSpec(object):
                url=None,
                pushUrl=None,
                review=None,
+               path=None,
                revision=None,
                orig_name=None):
     self.name = name
     self.url = url
     self.pushUrl = pushUrl
     self.review = review
+    self.path = path
     self.revision = revision
     self.orig_name = orig_name
 
@@ -2351,6 +2353,7 @@ class Project(object):
       remote.url = self.remote.url
       remote.pushUrl = self.remote.pushUrl
       remote.review = self.remote.review
+      remote.path = self.remote.path
       remote.projectname = self.name
 
       if self.worktree:
