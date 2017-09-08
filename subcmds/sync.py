@@ -718,10 +718,13 @@ later is required to fix a server side protocol bug.
       _PostRepoUpgrade(self.manifest, quiet=opt.quiet)
 
     if not opt.local_only:
-      mp.Sync_NetworkHalf(quiet=opt.quiet,
-                          current_branch_only=opt.current_branch_only,
-                          no_tags=opt.no_tags,
-                          optimized_fetch=opt.optimized_fetch)
+      synched_manifest = mp.Sync_NetworkHalf(quiet=opt.quiet,
+                                             current_branch_only=opt.current_branch_only,
+                                             no_tags=opt.no_tags,
+                                             optimized_fetch=opt.optimized_fetch)
+      if not synched_manifest and not opt.force_broken:
+        print('error: failed to sync manifest')
+        sys.exit(1)
 
     if mp.HasChanges:
       syncbuf = SyncBuffer(mp.config)
