@@ -2028,7 +2028,8 @@ class Project(object):
     cmd.extend(spec)
 
     ok = False
-    for _i in range(2):
+    num_tries = 2
+    for _i in range(num_tries):
       gitcmd = GitCommand(self, cmd, bare=True, ssh_proxy=ssh_proxy)
       ret = gitcmd.Wait()
       if ret == 0:
@@ -2052,7 +2053,10 @@ class Project(object):
       elif ret < 0:
         # Git died with a signal, exit immediately
         break
-      time.sleep(random.randint(30, 45))
+      if _i != num_tries - 1:
+        duration = random.randint(30, 45)
+        print('project fetch failed; sleeping ' + str(duration) + 's')
+        time.sleep(duration)
 
     if initial:
       if alt_dir:
